@@ -59,13 +59,13 @@ impl GameFileToolTrait for GameFileTool{
                     }
                 };
             }
-            if arg_count <= 30
+            if arg_count >= 30
             {
                 let _ = command.spawn();
                 command = Command::new("./lcf2xml.exe");
                 command.arg("--2k3");
                 executed_count += 1;
-                println!("{}/{}",files.len(),executed_count);
+                println!("{}/{}",files.len(),executed_count*30);
                 arg_count = 0;
             }
         }
