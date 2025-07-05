@@ -15,6 +15,7 @@ pub trait File2XmlTrait{
 }
 
 pub struct File2Xml{
+    #[allow(dead_code)]
     path:String,
 }
 //Opening a file with Vec<v8>

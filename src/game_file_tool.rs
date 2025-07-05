@@ -16,7 +16,6 @@ impl GameFileToolTrait for GameFileTool{
         {
             return Err(GetFileError::DirectoryError(game_path));
         }
-        let mut command_line:String = "".to_string();
         let mut file_tool = FileTool{game_path:game_path.clone()};
         //ファイルの一覧から、lmu,ldb,lmtを取得
         let mut file1 = file_tool.get_lmu_list().await;
@@ -41,7 +40,6 @@ impl GameFileToolTrait for GameFileTool{
         let mut command = Command::new("./lcf2xml.exe");
         command.arg("--2k3");
 
-        let mut max_file = 0;
         let mut arg_count = 0;
         let mut executed_count = 0;
         for file in files.iter() 
@@ -49,9 +47,9 @@ impl GameFileToolTrait for GameFileTool{
             let file_copy = copy(file,Path::new(file).file_name().unwrap().to_os_string());
             command.arg(&(Path::new(file).file_name().unwrap().to_str().unwrap()).to_string());
             arg_count += 1;
-            if(Path::new(Path::new(Path::new(file).file_name().unwrap())).exists() == false){
+            if Path::new(Path::new(Path::new(file).file_name().unwrap())).exists() == false {
                 match file_copy {
-                    Ok(value) => 
+                    Ok(_) => 
                     {
                         
                     },
@@ -75,7 +73,7 @@ impl GameFileToolTrait for GameFileTool{
         
 
         match command.output() {
-            Ok(output) => {
+            Ok(_) => {
             },
             Err(e) => {
                 println!("Command Error: {}", e);
